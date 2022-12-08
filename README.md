@@ -7,7 +7,7 @@ git clone git@github.com:ooooose/Docker_setup.git
 ```
 cd Docker_setup
 ```
-その後、以下の手順に倣い環境構築してみてください。
+その後、以下の手順に倣い環境構築してみてください。<br/>
 なお、**基本的に全てのコマンドは`Docker_setup/`下でお願いいたします。**
 
 ### フロントエンド側の環境構築

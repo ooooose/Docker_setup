@@ -1,5 +1,15 @@
 ## Dockerを使用した環境構築（Rails(API)・React・MySQL@5.7）
 こちらのリポジトリをローカルにクローン後、以下の手順で環境構築してください。
+### フロントエンド側の環境構築
+ローカルでReactアプリを立ち上げます。<br/>
+こちらはnode.jsのバージョンは19.0.0でお願いします。
+```
+yarn create react-app front
+```
+その後、ルートディレクトリで以下のコマンドを実行しDockerfileをfront/に移行します。
+```
+mv ./Dockerfile front/
+```
 ### バックエンド側の環境構築
 以下のコマンドをルートディレクトリで実行して、railsアプリを立ち上げます。
 ```
@@ -15,16 +25,7 @@ default: &default
   password: password #ここを編集（docker-compose.ymlの指定に合わせます）
   host: db #ここも編集
 ```
-### フロントエンド側の環境構築
-ローカルでReactアプリを立ち上げます。<br/>
-こちらはnode.jsのバージョンは19.0.0でお願いします。
-```
-yarn create react-app front
-```
-その後、ルートディレクトリで以下のコマンドを実行しDockerfileをfront/に移行します。
-```
-mv ./Dockerfile front/
-```
+
 ### 全体を動かしてみる。
 以下のコマンドを実行して立ち上げてみます。<br/>
 ```
@@ -35,7 +36,7 @@ docker-compose up -d --build
 docker-compose exec api rails db:create
 ```
 ### それぞれの画面
-以下のポートにアクセスしてみると以下の画面になるかと思われます。
+以下のポートにアクセスしてみると以下の画面になるかと思われます。<br/>
 3000番port
 [![Image from Gyazo](https://i.gyazo.com/fb57d8d6ad393fdf0be0ba0911f721f4.png)](https://gyazo.com/fb57d8d6ad393fdf0be0ba0911f721f4)
 

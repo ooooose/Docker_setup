@@ -1,8 +1,7 @@
-# Dockerを使用した環境構築（Rails(API)・React・MySQL@5.7）
+## Dockerを使用した環境構築（Rails(API)・React・MySQL@5.7）
 こちらのリポジトリをローカルにクローン後、以下の手順で環境構築してください。
-## バックエンド側の環境構築
-### Railsアプリケーションを作成
-以下のコマンドを実行して、railsアプリを立ち上げます。
+### バックエンド側の環境構築
+以下のコマンドをルートディレクトリで実行して、railsアプリを立ち上げます。
 ```
 docker-compose run --no-deps api rails new . --force  -d mysql --api
 ```
@@ -14,10 +13,9 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
   password: password #ここを編集（docker-compose.ymlの指定に合わせます）
-  socket: /tmp/mysql.sock
   host: db #ここも編集
 ```
-## フロントエンド側の環境構築
+### フロントエンド側の環境構築
 ローカルでReactアプリを立ち上げます。<br/>
 こちらはnode.jsのバージョンは19.0.0でお願いします。
 ```
@@ -27,7 +25,7 @@ yarn create react-app front
 ```
 mv ./Dockerfile front/
 ```
-## 全体を動かしてみる。
+### 全体を動かしてみる。
 以下のコマンドを実行して立ち上げてみます。<br/>
 ```
 docker-compose up -d --build
@@ -36,7 +34,7 @@ docker-compose up -d --build
 ```
 docker-compose exec api rails db:create
 ```
-## それぞれの画面
+### それぞれの画面
 以下のポートにアクセスしてみると以下の画面になるかと思われます。
 3000番port
 [![Image from Gyazo](https://i.gyazo.com/fb57d8d6ad393fdf0be0ba0911f721f4.png)](https://gyazo.com/fb57d8d6ad393fdf0be0ba0911f721f4)
@@ -44,7 +42,7 @@ docker-compose exec api rails db:create
 8000番port
 [![Image from Gyazo](https://i.gyazo.com/c14552f1923434522dedc17bca9032ed.png)](https://gyazo.com/c14552f1923434522dedc17bca9032ed)
 
-## 終了と再度立ち上げる場合
+### 終了と再度立ち上げる場合
 作業が終わったら以下のコマンドで停止をして下さい。
 ```
 docker-compose down
@@ -53,3 +51,4 @@ docker-compose down
 ```
 docker-compose up -d
 ```
+以上になります。ありがとうございました！

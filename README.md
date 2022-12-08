@@ -4,7 +4,7 @@
 ### Railsアプリケーションを作成
 以下のコマンドを実行して、railsアプリを立ち上げます。
 ```
-$ docker-compose run --no-deps api rails new . --force  -d mysql --api
+docker-compose run --no-deps api rails new . --force  -d mysql --api
 ```
 `docker-compose`でDBに接続するために、apiディレクトリ内にある`database.yml`の上段を編集します。
 ```:api/config/database.yml
@@ -13,12 +13,13 @@ default: &default
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
-  password: password #ここを編集
+  password: password #ここを編集（docker-compose.ymlの指定に合わせます）
   socket: /tmp/mysql.sock
-  host: db #ここを追加
+  host: db #ここも編集
 ```
 ## フロントエンド側の環境構築
-ローカルでReactアプリを立ち上げます。
+ローカルでReactアプリを立ち上げます。<br/>
+こちらはnode.jsのバージョンは19.0.0でお願いします。
 ```
 yarn create react-app front
 ```
@@ -36,9 +37,12 @@ docker-compose up -d --build
 docker-compose exec api rails db:create
 ```
 ## それぞれの画面
+以下のポートにアクセスしてみると以下の画面になるかと思われます。
 3000番port
+[![Image from Gyazo](https://i.gyazo.com/fb57d8d6ad393fdf0be0ba0911f721f4.png)](https://gyazo.com/fb57d8d6ad393fdf0be0ba0911f721f4)
 
 8000番port
+[![Image from Gyazo](https://i.gyazo.com/c14552f1923434522dedc17bca9032ed.png)](https://gyazo.com/c14552f1923434522dedc17bca9032ed)
 
 ## 終了と再度立ち上げる場合
 作業が終わったら以下のコマンドで停止をして下さい。

@@ -18,16 +18,34 @@ default: &default
   host: db #ここを追加
 ```
 ## フロントエンド側の環境構築
-以下のコマンドを実行して、Reactを立ち上げます。
+ローカルでReactアプリを立ち上げます。
 ```
-docker-compose run --rm front sh -c "yarn create react-app app"
+yarn create react-app front
+```
+その後、ルートディレクトリで以下のコマンドを実行しDockerfileをfront/に移行します。
+```
+mv ./Dockerfile front/
 ```
 ## 全体を動かしてみる。
-以下のコマンドを実行して立ち上げてみます。
+以下のコマンドを実行して立ち上げてみます。<br/>
 ```
-docker-compose up -d
+docker-compose up -d --build
 ```
 初回では、Rails側のDBが作成されていないので、以下のコマンドでDBを作成します。
 ```
 docker-compose exec api rails db:create
+```
+## それぞれの画面
+3000番port
+
+8000番port
+
+## 終了と再度立ち上げる場合
+作業が終わったら以下のコマンドで停止をして下さい。
+```
+docker-compose down
+```
+再度立ち上げる場合は以下のコマンドでお願いします。
+```
+docker-compose up -d
 ```
